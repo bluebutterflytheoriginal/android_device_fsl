@@ -35,12 +35,14 @@ TARGET_USERIMAGES_BLOCKS := 204800
 
 # Enable dex-preoptimization to speed up first boot sequence
 ifeq ($(HOST_OS),linux)
-   ifeq ($(TARGET_BUILD_VARIANT),user)
-	ifeq ($(WITH_DEXPREOPT),)
-	    WITH_DEXPREOPT := true
-	endif
-   endif
+  ifeq ($(WITH_DEXPREOPT),)
+    WITH_DEXPREOPT := true
+    ifeq ($(TARGET_BUILD_VARIANT),eng)
+      WITH_DEXPREOPT_BOOT_IMG_ONLY := true
+    endif
+  endif
 endif
+
 # for ums config, only export one partion instead of the whole disk
 UMS_ONEPARTITION_PER_DISK := true
 
