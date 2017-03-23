@@ -331,7 +331,6 @@ PRODUCT_COPY_FILES +=	\
 	system/core/rootdir/init.rc:root/init.rc \
 	device/fsl/imx6/etc/init.usb.rc:root/init.freescale.usb.rc \
 	device/fsl/imx6/etc/ota.conf:system/etc/ota.conf \
-        device/fsl/imx6/init.recovery.freescale.rc:root/init.recovery.freescale.rc \
     $(FSL_PROPRIETARY_PATH)/fsl-proprietary/media-profile/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     $(FSL_PROPRIETARY_PATH)/fsl-proprietary/media-profile/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
     $(FSL_PROPRIETARY_PATH)/fsl-proprietary/media-profile/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
