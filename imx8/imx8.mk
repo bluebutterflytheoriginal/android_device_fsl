@@ -347,7 +347,6 @@ PRODUCT_COPY_FILES +=	\
 	device/fsl/common/input/Dell_Dell_USB_Entry_Keyboard.idc:system/usr/idc/Dell_Dell_USB_Entry_Keyboard.idc \
 	system/core/rootdir/init.rc:root/init.rc \
 	device/fsl/imx8/etc/ota.conf:system/etc/ota.conf \
-        device/fsl/imx8/init.recovery.freescale.rc:root/init.recovery.freescale.rc \
     $(FSL_PROPRIETARY_PATH)/fsl-proprietary/media-profile/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     $(FSL_PROPRIETARY_PATH)/fsl-proprietary/media-profile/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
     $(FSL_PROPRIETARY_PATH)/fsl-proprietary/media-profile/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
