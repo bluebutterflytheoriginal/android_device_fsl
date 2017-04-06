@@ -47,33 +47,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.vndk.version=26.1.0 \
 
-# Broadcom firmwares
-PRODUCT_PACKAGES += \
-	Type_ZP.hcd   	\
-	bt_vendor.conf	\
-	bcmdhd.cal		\
-	fw_bcmdhd.bin	\
-	fw_bcmdhd_apsta.bin
-
-# Broadcom BCM4339 extended binary
-PRODUCT_PACKAGES += \
-    bcmdhd.SN8000.OOB.cal     \
-    bcmdhd.SN8000.SDIO.cal    \
-    sn_fw_bcmdhd_apsta.bin    \
-    sn_fw_bcmdhd.bin          \
-    sn_fw_bcmdhd_mfgtest.bin  \
-    1bw_fw_bcmdhd.bin         \
-    1bw_fw_bcmdhd_mfgtest.bin \
-    BCM43341B0.1BW.hcd        \
-    bcmdhd.1BW.OOB.cal        \
-    bcmdhd.1BW.SDIO.cal       \
-    1dx_fw_bcmdhd.bin         \
-    1dx_fw_bcmdhd_mfgtest.bin \
-    BCM43430A1.1DX.hcd        \
-    bcmdhd.1DX.OOB.cal        \
-    bcmdhd.1DX.SDIO.cal       \
-    wl
- 
 # Debug utils
 PRODUCT_PACKAGES += \
 	taskset					\
@@ -334,19 +307,6 @@ PRODUCT_COPY_FILES +=	\
     $(FSL_PROPRIETARY_PATH)/fsl-proprietary/media-profile/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     $(FSL_PROPRIETARY_PATH)/fsl-proprietary/media-profile/media_profiles_720p.xml:system/etc/media_profiles_720p.xml \
     
-PRODUCT_COPY_FILES += \
-	$(IMX_FIRMWARE_PATH)/imx-firmware/brcm/ZP_BCM4339/BCM4335C0.ZP.hcd:vendor/firmware/bcm/Type_ZP.hcd 	\
-	$(IMX_FIRMWARE_PATH)/imx-firmware/brcm/ZP_BCM4339/fw_bcmdhd.bin:vendor/firmware/bcm/fw_bcmdhd.bin 	\
-	$(IMX_FIRMWARE_PATH)/imx-firmware/brcm/ZP_BCM4339/fw_bcmdhd.bin:vendor/firmware/bcm/fw_bcmdhd_apsta.bin 	\
-	$(IMX_FIRMWARE_PATH)/imx-firmware/brcm/1BW_BCM43340/BCM43341B0.1BW.hcd:vendor/firmware/bcm/1BW_BCM43340/BCM43341B0.1BW.hcd 	\
-	$(IMX_FIRMWARE_PATH)/imx-firmware/brcm/1BW_BCM43340/fw_bcmdhd.bin:vendor/firmware/bcm/1BW_BCM43340/fw_bcmdhd.bin 	\
-	$(IMX_FIRMWARE_PATH)/imx-firmware/brcm/1BW_BCM43340/fw_bcmdhd.bin:vendor/firmware/bcm/1BW_BCM43340/fw_bcmdhd_apsta.bin 	\
-	$(IMX_FIRMWARE_PATH)/imx-firmware/brcm/1DX_BCM4343W/BCM43430A1.1DX.hcd:vendor/firmware/bcm/1DX_BCM4343W/BCM43430A1.1DX.hcd 	\
-	$(IMX_FIRMWARE_PATH)/imx-firmware/brcm/1DX_BCM4343W/fw_bcmdhd.bin:vendor/firmware/bcm/1DX_BCM4343W/fw_bcmdhd.bin 	\
-	$(IMX_FIRMWARE_PATH)/imx-firmware/brcm/1DX_BCM4343W/fw_bcmdhd.bin:vendor/firmware/bcm/1DX_BCM4343W/fw_bcmdhd_apsta.bin 	\
-	$(IMX_FIRMWARE_PATH)/imx-firmware/brcm/SN8000_BCM43362/fw_bcmdhd.bin:vendor/firmware/bcm/SN8000_BCM43362/fw_bcmdhd.bin 	\
-	$(IMX_FIRMWARE_PATH)/imx-firmware/brcm/SN8000_BCM43362/fw_bcmdhd.bin:vendor/firmware/bcm/SN8000_BCM43362/fw_bcmdhd_apsta.bin 	\
-
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
