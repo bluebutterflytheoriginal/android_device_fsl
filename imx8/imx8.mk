@@ -9,6 +9,7 @@ $(call inherit-product, $(TOPDIR)frameworks/base/data/sounds/AllAudio.mk)
 PRODUCT_BRAND := Android
 PRODUCT_MANUFACTURER := freescale
 
+ifneq ($(BOARD_AVB_ENABLE),false)
 PRODUCT_PACKAGES += \
     bootctrl.avb \
     update_engine_sideload \
@@ -16,6 +17,13 @@ PRODUCT_PACKAGES += \
     update_engine \
     update_verifier \
     update_engine_client
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.hardware.bootctrl=avb
+else
+PRODUCT_PACKAGES += \
+    bootctrl.default
+endif
 
 # Android infrastructures
 PRODUCT_PACKAGES += \
@@ -327,9 +335,6 @@ ifneq (,$(filter userdebug, $(TARGET_BUILD_VARIANT)))
     $(call add-product-dex-preopt-module-config,services,--generate-mini-debug-info)
     $(call add-product-dex-preopt-module-config,wifi-service,--generate-mini-debug-info)
 endif
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.hardware.bootctrl=avb
 
 # include a google recommand heap config file.
 include frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk
