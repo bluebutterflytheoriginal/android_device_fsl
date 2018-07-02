@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2011 The Android Open Source Project
  * Copyright (C) 2013-2015 Freescale Semiconductor, Inc.
+ * Copyright (C) 2018 Boundary Devices LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,51 +25,46 @@
 #include "device.h"
 #include "screen_ui.h"
 
-const char* HEADERS[] = { "Volume up/down to move highlight;",
-                          "power button to select.",
-                          "",
-                          NULL };
-
 const char* ITEMS[] = { "reboot system now",
                         "apply update from ADB",
                         "wipe data/factory reset",
                         "wipe cache partition",
                         NULL };
 
-class ImxUI : public ScreenRecoveryUI {
-  public:
-    virtual KeyAction CheckKey(int key) {
-        if (IsKeyPressed(KEY_POWER) && key == KEY_VOLUMEUP) {
-            return TOGGLE;
-        }
-        return ENQUEUE;
-    }
-};
-
-
 class ImxDevice : public Device {
   public:
     ImxDevice() :
-        Device(new ImxUI) {
+        Device(new ScreenRecoveryUI) {
     }
 
-    int HandleMenuKey(int key_code, int visible) {
-        if (visible) {
-            switch (key_code) {
-              case KEY_DOWN:
-              case KEY_VOLUMEDOWN:
+    int HandleMenuKey(int key, bool visible) {
+        if (!visible) {
+            return kNoAction;
+        }
+
+        // If 3 buttons availables, use their values as expected
+        if (GetUI()->HasThreeButtons()) {
+            switch (key) {
+            case KEY_DOWN:
+            case KEY_VOLUMEDOWN:
                 return kHighlightDown;
 
-              case KEY_UP:
-              case KEY_VOLUMEUP:
+            case KEY_UP:
+            case KEY_VOLUMEUP:
                 return kHighlightUp;
 
-              case KEY_POWER:
+            case KEY_ENTER:
+            case KEY_POWER:
                 return kInvokeItem;
+
+            default:
+                return kNoAction;
             }
         }
 
-        return kNoAction;
+        // If only one button is available, any button == cycles the highlight
+        // When long press, the key is changed to KEY_ENTER, so select item
+        return (key == KEY_ENTER) ? kInvokeItem : kHighlightDown;
     }
 
     BuiltinAction InvokeMenuItem(int menu_position) {
@@ -81,7 +77,6 @@ class ImxDevice : public Device {
         }
     }
 
-    const char* const* GetMenuHeaders() { return HEADERS; }
     const char* const* GetMenuItems() { return ITEMS; }
 
 };
