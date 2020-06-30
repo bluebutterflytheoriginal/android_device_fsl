@@ -96,12 +96,14 @@ PRODUCT_PACKAGES += \
 	android.hardware.memtrack@1.0-impl \
 	android.hardware.memtrack@1.0-service
 
+ifneq ($(REMOVE_CAMERA_PACKAGES),true)
 # camera related libs
 PRODUCT_PACKAGES += \
 	camera.device@1.0-impl          \
 	camera.device@3.2-impl          \
 	android.hardware.camera.provider@2.4-impl \
         android.hardware.camera.provider@2.4-service
+endif
 
 # Freescale VPU firmware files.
 PRODUCT_PACKAGES += \
